@@ -1,0 +1,316 @@
+Rules of filtering :
+Show matrix:
+>> ones(2)
+
+ans =
+
+     1     1
+     1     1
+
+>> ones(2,2)
+
+ans =
+
+     1     1
+     1     1
+
+>> low pass filter=average filter/mask filter
+code:
+
+
+
+>> (1/9.0)*ones(3)
+
+ans =
+
+    0.1111    0.1111    0.1111
+    0.1111    0.1111    0.1111
+    0.1111    0.1111    0.1111
+
+>> fspecial('average',[3 3])
+
+ans =
+
+    0.1111    0.1111    0.1111
+    0.1111    0.1111    0.1111
+    0.1111    0.1111    0.1111
+
+>>for colour image :
+
+
+//(f=filter)     (f,c) === filtering of image c;
+
+
+Low pass filter:
+
+
+code :
+>> (1/9.0)*ones(3)
+
+ans =
+
+    0.1111    0.1111    0.1111
+    0.1111    0.1111    0.1111
+    0.1111    0.1111    0.1111
+
+>> fspecial('average',[3 3])
+
+ans =
+
+    0.1111    0.1111    0.1111
+    0.1111    0.1111    0.1111
+    0.1111    0.1111    0.1111
+
+>> c=imread('autom.tif');
+Error using imread (line 350)
+File "autom.tif" does not exist.
+ 
+>> c=imread('cameraman.tif');
+>> f=fspecial('average',[3 3]);
+>> f
+
+f =
+
+    0.1111    0.1111    0.1111
+    0.1111    0.1111    0.1111
+    0.1111    0.1111    0.1111
+
+>> cf=filter2(f,c);
+>> figure,imshow(c),figure,imshow(c)
+>> figure,imshow(c),figure,imshow(cf/255)
+>> 
+>> 
+>> 
+>> 
+>> f=fspecial('average',[11 11]);
+>> figure,imshow(c),figure,imshow(cf/255)
+>> cf=filter2(f,c);
+>> figure,imshow(c),figure,imshow(cf/255)
+>> 
+
+
+
+
+High pass filter:
+
+
+laplas transform = High pass filter :
+
+Code:
+// surf( surface)
+
+
+>> c=imread('cameraman.tif');
+>> f=fspecial('laplacian');
+>> cf=filter2(f,c);
+>> figure,imshow(c),figure,imshow(cf/255)
+>> figure,imshow(c),figure,imshow(cf/100)
+>> f
+
+f =
+
+    0.1667    0.6667    0.1667
+    0.6667   -3.3333    0.6667
+    0.1667    0.6667    0.1667
+
+>> 
+>> 
+>> f=fspecial('avarage',[3 3]);
+
+
+
+[type, p2, p3] = ParseInputs(varargin{:})
+ 
+>> f=fspecial('average',[3 3]);
+>> fifure,surf(1:3,1:3,f);
+Undefined function or variable 'fifure'.
+ 
+>> figure,surf(1:3,1:3,f);
+>> figure,surf(1:3,1:3,f,red);
+Undefined function or variable 'red'.
+ 
+>> figure,surf(1:3,1:3,f,*r);
+ figure,surf(1:3,1:3,f,*r);
+                       |
+ 
+>> figure,surf(1:3,1:3,f);
+>> 
+
+
+///     If it show down that is the high pass filter:
+
+
+///   for log ar jono
+
+>> f=fspecial('log');
+>> f
+
+f =
+
+    0.0448    0.0468    0.0564    0.0468    0.0448
+    0.0468    0.3167    0.7146    0.3167    0.0468
+    0.0564    0.7146   -4.9048    0.7146    0.0564
+    0.0468    0.3167    0.7146    0.3167    0.0468
+    0.0448    0.0468    0.0564    0.0468    0.0448
+
+>> size(f)
+
+ans =
+
+     5     5
+
+>> figure, surf(1:5,1:5,f)
+>> 
+
+
+
+
+Unsharp Masking:
+
+>> c=imread('cameraman.tif');
+>> f=fspecial('unsharp',0.5);
+>> cf=filter2(f,c);
+>> imshow(c),figure,imshow(cf)
+>> imshow(c),figure,imshow(cf/255)
+>> 
+
+
+/// (Low pass filter + High pass Filter)== Linear Filter
+Identity filter= High pass Filter
+//////
+
+for creating Linear Filter , we have to first vreate a identity ,atrix;
+
+Linear filter is a all pass filter
+
+
+Code:
+>> id=[0 0 0 ; 0 1 1; 0 0 0];
+>> id
+
+id =
+
+     0     0     0
+     0     1     1
+     0     0     0
+
+>> 
+>> 
+>> f=fspecial('average');
+>> hb1=3*id-2*f;
+>> hb2=1.25*id-o.25*f;
+ hb2=1.25*id-o.25*f;
+              |
+Error: Unexpected MATLAB expression.
+ 
+>> hb2=1.25*id-0.25*f;
+>> hb1
+
+hb1 =
+
+   -0.2222   -0.2222   -0.2222
+   -0.2222    2.7778    2.7778
+   -0.2222   -0.2222   -0.2222
+
+>> (hb= high boss filter)
+
+
+
+>> hb2 =
+
+   -0.0278   -0.0278   -0.0278
+   -0.0278    1.2222    1.2222
+   -0.0278   -0.0278   -0.0278
+
+
+
+
+
+>> id=[0 0 0 ; 0 1 1; 0 0 0];
+>> id
+
+id =
+
+     0     0     0
+     0     1     1
+     0     0     0
+
+>> 
+>> 
+>> f=fspecial('average');
+>> hb1=3*id-2*f;
+>> hb2=1.25*id-o.25*f;
+ hb2=1.25*id-o.25*f;
+              |
+Error: Unexpected MATLAB expression.
+ 
+>> hb2=1.25*id-0.25*f;
+>> hb1
+
+hb1 =
+
+   -0.2222   -0.2222   -0.2222
+   -0.2222    2.7778    2.7778
+   -0.2222   -0.2222   -0.2222
+
+>> hb2
+
+hb2 =
+
+   -0.0278   -0.0278   -0.0278
+   -0.0278    1.2222    1.2222
+   -0.0278   -0.0278   -0.0278
+
+>> hb2 =
+
+   -0.0278   -0.0278   -0.0278
+   -0.0278    1.2222    1.2222
+   -0.0278   -0.0278   -0.0278
+ hb2 =
+      |
+Error: Expression or statement is incomplete or incorrect.
+ 
+>> 
+>> 
+>> 
+>> 
+>> figure,surf(1:3,1:3,hb1)
+>> figure,surf(1:3,1:3,hb2)
+>> figure,surf(1:5,1:5,hb1)
+Error using surf (line 75)
+Data dimensions must agree.
+ 
+>> figure,surf(1:3,1:3,hb1)
+>> figure,surf(1:3,1:3,hb2)
+>> 
+
+
+
+
+ROI= Resion of Interest 
+
+
+Code:
+
+>> c=imread('cameraman.tif');
+>> imtool(c)
+>> 
+>> 
+>> 
+>> c=imread('cameraman.tif');
+>> roi=roipoly(c,[175 230 230 175],[100 100 185 185]);
+>> imshow(roi)
+>> 
+>> 
+>> f=fspecial('unsharp');
+>> cf=roifilter2(f,c,roi);
+Undefined function 'roifilter2' for input arguments of type 'uint8'.
+ 
+>> cf=roifilt2(f,c,roi);
+>> imshow(c),figure,imshow(cf)
+>> 
+
+
+
+
+
