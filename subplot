@@ -1,0 +1,20 @@
+>> x=videoinput('winvideo',1);
+preview(x)
+>> delete(x)
+
+
+
+Add picture to another pic;
+
+
+
+
+>> A=imread('cameraman.tif');
+>> B=imadd(A,100);
+>> subplot(1,2,1),imshow(A);
+>> subplot(1,2,2),imshow(B);
+>> subplot(1,2,1),imshow(A);
+>> subplot(1,2,2),imshow(B);
+>> 
+
+
